@@ -52,7 +52,7 @@ sub get_json_from_url {
 }
 
 my $data = get_json_from_url("http://$host:$port/_nodes?jvm=true");
-my $t_data = get_json_from_url("http://$host:$port/_nodes?jvm=true/stats");
+my $t_data = get_json_from_url("http://$host:$port/_nodes/stats?jvm=true");
 my %out = (young => 0, old => 0);
 
 foreach my $full_node_name (keys %{$data->{nodes}}) {
