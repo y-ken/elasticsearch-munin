@@ -24,7 +24,7 @@ Before use, put these settings into munin configuration.
     * in the case of creating file per plugins.<br />
       `/etc/munin/plugin-conf.d/elasticsearch`
 
-##### example of minimam configuration<br />
+##### example of minimal configuration<br />
 
 `elasticsearch_open_files` has required root privilege to read under the `/proc`.
 
