@@ -37,7 +37,7 @@ Kentaro Yoshida <y.ken.studio@gmail.com>
 
 if [ "$1" = "config" ]; then
 
-        echo 'graph_title ElasticSearch open files'
+        echo 'graph_title elasticsearch open files'
         echo 'graph_args --base 1000 -l 0'
         echo 'graph_vlabel number of open files'
         echo 'graph_category elasticsearch'

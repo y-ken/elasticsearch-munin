@@ -20,7 +20,7 @@ elasticsearch_cache - A munin plugin that collects cache stats of your elasticse
                               
 =head1 APPLICABLE SYSTEMS     
                               
-ElasticSearch                 
+elasticsearch                 
                               
 =head1 CONFIGURATION          
 
@@ -67,7 +67,7 @@ foreach my $full_node_name (keys %{$data->{nodes}}) {
 }
 if ($ARGV[0] and $ARGV[0] eq 'config') {
     print "graph_args --base 1024\n";
-    print "graph_title ElasticSearch cache\n";
+    print "graph_title elasticsearch cache\n";
     print "graph_category elasticsearch\n";
     print "graph_vlabel Bytes\n";
 

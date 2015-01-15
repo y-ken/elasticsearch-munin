@@ -20,7 +20,7 @@ elasticsearch_index_total - A munin plugin that collects stats about the index t
 
 =head1 APPLICABLE SYSTEMS
 
-ElasticSearch
+elasticsearch
 
 =head1 CONFIGURATION
 
