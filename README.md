@@ -10,7 +10,7 @@ This original codes has out of maintenance, so I have started maintenance this p
 
 ## Plugins
 
-* elasticsearch_cache - field and filter cache stats* elasticsearch_cluster_shards - cluster shards stats* elasticsearch_docs - document count* elasticsearch_index_size - index size* elasticsearch_index_total - index total count* elasticsearch_jvm_memory - JVM heap stats* elasticsearch_jvm_threads - JVM thread stats* elasticsearch_open_files - open files count* elasticsearch_translog_size - translog file size
+* elasticsearch_cache - field and filter cache stats* elasticsearch_cluster_shards - cluster shards stats* elasticsearch_docs - document count* elasticsearch_index_size - index size* elasticsearch_index_total - index total count* elasticsearch_jvm_memory - JVM heap stats* elasticsearch_jvm_threads - JVM thread stats* elasticsearch_open_files - open files count
 
 ## Configuration
 
