@@ -2,6 +2,7 @@
 # -*- sh -*-
 
 # AUTHOR: Moritz Onken <onken@netcubed.de>
+# AUTHOR: Kentaro Yoshida <y.ken.studio@gmail.com>
 
 . $MUNIN_LIBDIR/plugins/plugin.sh
 

@@ -1,6 +1,38 @@
 #!/bin/sh
 # -*- sh -*-
 
+# Parameters supported:       
+#                             
+# config                      
+# autoconf                    
+#                             
+# Magic markers:              
+#%# family=auto               
+#%# capabilities=autoconf     
+
+=head1 NAME                   
+                              
+elasticsearch_cache - A munin plugin that collects cache stats of your elasticsearch instances
+                              
+=head1 APPLICABLE SYSTEMS     
+                              
+elasticsearch                 
+                              
+=head1 CONFIGURATION          
+
+None
+
+=head1 BUGS
+
+None known so far. If you find any, let me know.
+
+=head1 AUTHOR
+
+Tomas Doran (t0m) - c<< <bobtfish@bobtfish.net> >>
+Kentaro Yoshida <y.ken.studio@gmail.com>
+
+=cut
+
 . $MUNIN_LIBDIR/plugins/plugin.sh
 
 if [ "$1" = "config" ]; then
