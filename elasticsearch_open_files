@@ -49,7 +49,12 @@ if [ "$1" = "config" ]; then
         exit 0
 fi
 
-PID=`ps -u elasticsearch -opid,comm | grep java | awk '{ print $1 }'`
+
+if [ -z "${es_user}" ]; then
+  es_user="elasticsearch"
+fi
+
+PID=`ps -u $es_user -opid,comm | grep java | awk '{ print $1 }'`
 VALUE=`ls /proc/$PID/fd/ | wc | awk '{ print $1 }'`
 MAX_VALUE=`grep 'Max open files' /proc/$PID/limits | awk '{ print $5 }'`
 echo "used.value $VALUE"

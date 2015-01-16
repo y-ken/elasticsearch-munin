@@ -19,7 +19,17 @@ if [ "$1" = "config" ]; then
         exit 0
 fi
 
-DIR=`ps -u elasticsearch -opid,command |tail -1| perl -ne 'print $1 if(/-Des.default.path.data=([\w\/]+)/)'`
+if [ -z "${es_user}" ]; then
+  es_user="elasticsearch"
+fi
+
+
+if [ -n "${data_dir}" ]; then
+    DIR=${data_dir}
+else
+    DIR=`ps -u $es_user -opid,command |tail -1| perl -ne 'print $1 if(/-Des.default.path.data=([\w\/]+)/)'`
+fi
+
 NUMBER=`ls $DIR/*/nodes/0/indices/*/*/translog/* | wc -l`
 SIZE=`du -s $DIR/*/nodes/0/indices/*/*/translog/* | awk '{sum+=$1};END{print sum}'`
 echo "number.value $NUMBER"
