@@ -10,7 +10,17 @@ This original codes has out of maintenance, so I have started maintenance this p
 
 ## Plugins
 
-* elasticsearch_cache - field and filter cache stats* elasticsearch_cluster_shards - cluster shards stats* elasticsearch_docs - document count* elasticsearch_index_size - index size* elasticsearch_index_total - index total count* elasticsearch_jvm_memory - JVM heap stats* elasticsearch_jvm_threads - JVM thread stats* elasticsearch_open_files - open files count
+* elasticsearch_cache - field and filter cache stats
+* elasticsearch_cluster_shards - cluster shards stats
+* elasticsearch_docs - document count
+* elasticsearch_gc_time - garbage collection time stats
+* elasticsearch_index_size - index size
+* elasticsearch_index_total - index total count
+* elasticsearch_jvm_memory - JVM heap/non-heap memory usage
+* elasticsearch_jvm_pools_size - JVM pools size stats
+* elasticsearch_jvm_threads - JVM thread stats
+* elasticsearch_open_files - open files count
+* elasticsearch_translog_size - translog file size
 
 ## Configuration
 
@@ -57,11 +67,11 @@ To confirm wokring fine or not, you can check like below.
 
 ```sh
 $ munin-run elasticsearch_jvm_memory
-heap_init.value 8589934592
-non_heap_max.value 224395264
+heap_used.value 5017533904
 heap_max.value 8520204288
-direct_max.value 8520204288
-non_heap_init.value 24313856
+heap_committed.value 8520204288
+non_heap_used.value 60425328
+non_heap_committed.value 90300416
 ```
 
 ## Author
