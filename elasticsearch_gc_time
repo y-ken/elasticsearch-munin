@@ -69,7 +69,7 @@ if ($ARGV[0] and $ARGV[0] eq 'config') {
     print "graph_vlabel miliseconds\n";
 
     foreach my $name (keys %out) {
-        print "$name.label $name\n"."$name.type GAUGE\n";
+        print "$name.label $name\n"."$name.type COUNTER\n";
     }
 }
 elsif (!$ARGV[0] || $ARGV[0] eq 'autoconf') {
