@@ -37,6 +37,18 @@ Kentaro Yoshida - https://github.com/y-ken
 
 =cut
 
+my %out = (relocating_shards => 0, active_shards => 0, unassigned_shards => 0, initializing_shards => 0, active_primary_shards => 0);
+if ($ARGV[0] and $ARGV[0] eq 'config') {
+    print "graph_title elasticsearch cluster shards\n";
+    print "graph_category elasticsearch\n";
+    print "graph_scale no\n";
+
+    foreach my $name (keys %out) {
+        print "$name.label $name\n"."$name.type GAUGE\n";
+    }
+    exit(0);
+}
+
 my $host = exists $ENV{'host'} ? $ENV{'host'} : 'localhost';
 my $port = exists $ENV{'port'} ? $ENV{'port'} : 9200;
 
@@ -46,27 +58,23 @@ $ua->timeout(10);
 sub get_json_from_url {
     my $uri = shift;
     my $res = $ua->get($uri, 'Content-Type' => 'application/json' );
-    Carp::confess($res->code . " for " . $uri) unless $res->is_success;
-    my $data = do { local $@; eval { decode_json($res->content) } };
-    die("Could not decode JSON from: " . $res->content) unless $data;
+    my $data = {};
+    if ($res->is_success) {
+        $data = do { local $@; eval { decode_json($res->content) } };
+    } else {
+        print STDERR "Error: ".$res->code." for $uri\n";
+    }
     return $data;
 }
 
 my $data = get_json_from_url("http://$host:$port/_cluster/health");
-
-if ($ARGV[0] and $ARGV[0] eq 'config') {
-    print "graph_title elasticsearch cluster shards\n";
-    print "graph_category elasticsearch\n";
-    print "graph_scale no\n";
-
-    foreach my $name (grep { /_shards$/ } keys %$data) {
-        print "$name.label $name\n"."$name.type GAUGE\n";
+if ( ! $data->{cluster_name}) {
+    foreach my $name (keys %out) {
+        print "$name.value U\n";
     }
-}
-elsif (!$ARGV[0] || $ARGV[0] eq 'autoconf') {
-    foreach my $name (grep { /_shards$/ } keys %$data) {
-        print "$name.value " . $data->{$name} . "\n";
-    }
+    exit(0);
 }
 
-exit(0);
+foreach my $name (keys %out) {
+    print "$name.value " . $data->{$name} . "\n";
+}
