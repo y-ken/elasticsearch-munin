@@ -61,7 +61,7 @@ sub get_json_from_url {
     my $data = {};
     if ($res->is_success) {
         $data = do { local $@; eval { decode_json($res->content) } };
-    } else {
+    } elsif ($ENV{'MUNIN_DEBUG'}) {
         print STDERR "Error: ".$res->code." for $uri\n";
     }
     return $data;
