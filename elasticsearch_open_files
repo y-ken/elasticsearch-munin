@@ -36,40 +36,6 @@ Kentaro Yoshida - https://github.com/y-ken
 
 =cut
 
-my $host = exists $ENV{'host'} ? $ENV{'host'} : 'localhost';
-my $port = exists $ENV{'port'} ? $ENV{'port'} : 9200;
-
-my $ua = LWP::UserAgent->new;
-$ua->timeout(10);
-
-sub get_json_from_url {
-    my $uri = shift;
-    my $res = $ua->get($uri, 'Content-Type' => 'application/json' );
-    Carp::confess($res->code . " for " . $uri) unless $res->is_success;
-    my $data = do { local $@; eval { decode_json($res->content) } };
-    die("Could not decode JSON from: " . $res->content) unless $data;
-    return $data;
-}
-
-sub collect_max_open_file_descriptors {
-    my $data = get_json_from_url("http://$host:$port/_nodes/_local/process");
-    foreach my $full_node_name (keys %{$data->{nodes}}) {
-        return $data->{nodes}{$full_node_name}{process}{max_file_descriptors};
-    }
-}
-
-sub collect_open_file_descriptors {
-    my $data = get_json_from_url("http://$host:$port/_nodes/_local/stats/process");
-    foreach my $full_node_name (keys %{$data->{nodes}}) {
-        return $data->{nodes}{$full_node_name}{process}{open_file_descriptors};
-    }
-}
-
-my %out = (
-    max_file_descriptors => collect_max_open_file_descriptors,
-    open_file_descriptors => collect_open_file_descriptors
-);
-
 if ($ARGV[0] and $ARGV[0] eq 'config') {
     print "graph_title elasticsearch open files\n";
     print "graph_args --base 1000 -l 0\n";
@@ -80,10 +46,52 @@ if ($ARGV[0] and $ARGV[0] eq 'config') {
     print "open_file_descriptors.info The number of currently open files.\n";
     print "max_file_descriptors.label max open files\n";
     print "max_file_descriptors.type GAUGE\n";
-}
-elsif (!$ARGV[0] || $ARGV[0] eq 'autoconf') {
-    print "max_file_descriptors.value $out{max_file_descriptors}\n";
-    print "open_file_descriptors.value $out{open_file_descriptors}\n";
+    exit(0);
 }
 
-exit(0);
+my $host = exists $ENV{'host'} ? $ENV{'host'} : 'localhost';
+my $port = exists $ENV{'port'} ? $ENV{'port'} : 9200;
+
+my $ua = LWP::UserAgent->new;
+$ua->timeout(10);
+
+sub get_json_from_url {
+    my $uri = shift;
+    my $res = $ua->get($uri, 'Content-Type' => 'application/json' );
+    my $data = {};
+    if ($res->is_success) {
+        $data = do { local $@; eval { decode_json($res->content) } };
+    } elsif ($ENV{'MUNIN_DEBUG'}) {
+        print STDERR "Error: ".$res->code." for $uri\n";
+    }
+    return $data;
+}
+
+sub collect_max_open_file_descriptors {
+    my $data = get_json_from_url("http://$host:$port/_nodes/_local/process");
+    foreach my $full_node_name (keys %{$data->{nodes}}) {
+        return $data->{nodes}{$full_node_name}{process}{max_file_descriptors};
+    }
+    return undef;
+}
+
+sub collect_open_file_descriptors {
+    my $data = get_json_from_url("http://$host:$port/_nodes/_local/stats/process");
+    foreach my $full_node_name (keys %{$data->{nodes}}) {
+        return $data->{nodes}{$full_node_name}{process}{open_file_descriptors};
+    }
+    return undef;
+}
+
+my %out = (
+    max => collect_max_open_file_descriptors,
+    open => collect_open_file_descriptors
+);
+if ( ! defined $out{max} || ! defined $out{open}) {
+    print "open_file_descriptors.value U\n";
+    print "max_file_descriptors.value U\n";
+    exit(0);
+}
+
+print "open_file_descriptors.value $out{open}\n";
+print "max_file_descriptors.value $out{max}\n";
