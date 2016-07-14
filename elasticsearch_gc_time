@@ -65,7 +65,7 @@ foreach my $full_node_name (keys %{$data->{nodes}}) {
     }
 }
 if ($ARGV[0] and $ARGV[0] eq 'config') {
-    print "graph_title ElasticSearch gc time\n";
+    print "graph_title Elasticsearch gc time\n";
     print "graph_category elasticsearch\n";
     print "graph_vlabel miliseconds\n";
 

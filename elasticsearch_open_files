@@ -71,7 +71,7 @@ my %out = (
 );
 
 if ($ARGV[0] and $ARGV[0] eq 'config') {
-    print "graph_title elasticsearch open files\n";
+    print "graph_title Elasticsearch open files\n";
     print "graph_args --base 1000 -l 0\n";
     print "graph_vlabel number of open files\n";
     print "graph_category elasticsearch\n";

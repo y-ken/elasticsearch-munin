@@ -63,7 +63,7 @@ foreach my $full_node_name (keys %{$data->{nodes}}) {
     $out{delete} += $t_data->{nodes}{$full_node_name}{indices}{indexing}{delete_total};
 }
 if ($ARGV[0] and $ARGV[0] eq 'config') {
-    print "graph_title elasticsearch index operations\n";
+    print "graph_title Elasticsearch index operations\n";
     print "graph_category elasticsearch\n";
     print "graph_args --base 1000 -l 0\n";
     print "graph_vlabel Operations per second\n";

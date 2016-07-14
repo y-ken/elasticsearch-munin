@@ -72,7 +72,7 @@ foreach my $full_node_name (keys %{$data->{nodes}}) {
     }
 }
 if ($ARGV[0] and $ARGV[0] eq 'config') {
-    print "graph_title ElasticSearch jvm pools size\n";
+    print "graph_title Elasticsearch jvm pools size\n";
     print "graph_category elasticsearch\n";
     print "graph_vlabel bytes\n";
 
