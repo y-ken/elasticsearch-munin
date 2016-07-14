@@ -1,28 +1,28 @@
 #!/usr/bin/env perl
 
-# Parameters supported:       
-#                             
-# config                      
-# autoconf                    
-#                             
-# Magic markers:              
-#%# family=auto               
-#%# capabilities=autoconf     
-                              
-use strict;                   
-use warnings;                 
-use LWP;                      
-use JSON qw/decode_json/;     
-                              
-=head1 NAME                   
-                              
+# Parameters supported:
+#
+# config
+# autoconf
+#
+# Magic markers:
+#%# family=auto
+#%# capabilities=autoconf
+
+use strict;
+use warnings;
+use LWP;
+use JSON qw/decode_json/;
+
+=head1 NAME
+
 elasticsearch_cache - A munin plugin that collects cache stats of your elasticsearch instances
-                              
-=head1 APPLICABLE SYSTEMS     
-                              
-elasticsearch                 
-                              
-=head1 CONFIGURATION          
+
+=head1 APPLICABLE SYSTEMS
+
+elasticsearch
+
+=head1 CONFIGURATION
 
 None
 

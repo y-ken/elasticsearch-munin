@@ -15,14 +15,14 @@ use LWP;
 use JSON qw/decode_json/;
 
 =head1 NAME
-                              
+
 elasticsearch_open_files - A munin plugin that collects the number of open files in your elasticsearch instances
-                              
+
 =head1 APPLICABLE SYSTEMS
-                              
-elasticsearch                 
-                              
-=head1 CONFIGURATION          
+
+elasticsearch
+
+=head1 CONFIGURATION
 
 None
 
