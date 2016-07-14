@@ -20,7 +20,7 @@ elasticsearch_docs - A munin plugin that collects document stats of your elastic
 
 =head1 APPLICABLE SYSTEMS
 
-elasticsearch
+Elasticsearch
 
 =head1 CONFIGURATION
 

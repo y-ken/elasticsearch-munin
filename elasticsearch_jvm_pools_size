@@ -20,7 +20,7 @@ elasticsearch_jvm_pools_size - A munin plugin that collects jvm pools size stats
 
 =head1 APPLICABLE SYSTEMS
 
-ElasticSearch
+Elasticsearch
 
 =head1 CONFIGURATION
 

@@ -20,7 +20,7 @@ elasticsearch_gc_time - A munin plugin that collects garbage collection time sta
 
 =head1 APPLICABLE SYSTEMS
 
-ElasticSearch
+Elasticsearch
 
 =head1 CONFIGURATION
 

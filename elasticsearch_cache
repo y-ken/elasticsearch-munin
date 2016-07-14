@@ -20,7 +20,7 @@ elasticsearch_cache - A munin plugin that collects cache stats of your elasticse
 
 =head1 APPLICABLE SYSTEMS
 
-elasticsearch
+Elasticsearch
 
 =head1 CONFIGURATION
 

@@ -20,7 +20,7 @@ elasticsearch_open_files - A munin plugin that collects the number of open files
 
 =head1 APPLICABLE SYSTEMS
 
-elasticsearch
+Elasticsearch
 
 =head1 CONFIGURATION
 

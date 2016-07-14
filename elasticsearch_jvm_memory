@@ -20,7 +20,7 @@ elasticsearch_jvm_memory - A munin plugin that collects JVM memory stats from th
 
 =head1 APPLICABLE SYSTEMS
 
-elasticsearch
+Elasticsearch
 
 =head1 CONFIGURATION
 
