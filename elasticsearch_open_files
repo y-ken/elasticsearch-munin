@@ -51,8 +51,8 @@ sub get_json_from_url {
     return $data;
 }
 
-sub collect_max_open_file_descriptors {
-    my $data = get_json_from_url("http://$host:$port/_nodes/_local/process");
+sub collect_max_file_descriptors {
+    my $data = get_json_from_url("http://$host:$port/_nodes/_local/stats/process");
     foreach my $full_node_name (keys %{$data->{nodes}}) {
         return $data->{nodes}{$full_node_name}{process}{max_file_descriptors};
     }
@@ -66,7 +66,7 @@ sub collect_open_file_descriptors {
 }
 
 my %out = (
-    max_file_descriptors => collect_max_open_file_descriptors,
+    max_file_descriptors => collect_max_file_descriptors,
     open_file_descriptors => collect_open_file_descriptors
 );
 
