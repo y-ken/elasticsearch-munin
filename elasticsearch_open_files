@@ -15,14 +15,14 @@ use LWP;
 use JSON qw/decode_json/;
 
 =head1 NAME
-
+                              
 elasticsearch_open_files - A munin plugin that collects the number of open files in your elasticsearch instances
-
+                              
 =head1 APPLICABLE SYSTEMS
-
-Elasticsearch
-
-=head1 CONFIGURATION
+                              
+elasticsearch                 
+                              
+=head1 CONFIGURATION          
 
 None
 
@@ -71,7 +71,7 @@ my %out = (
 );
 
 if ($ARGV[0] and $ARGV[0] eq 'config') {
-    print "graph_title Elasticsearch open files\n";
+    print "graph_title elasticsearch open files\n";
     print "graph_args --base 1000 -l 0\n";
     print "graph_vlabel number of open files\n";
     print "graph_category elasticsearch\n";

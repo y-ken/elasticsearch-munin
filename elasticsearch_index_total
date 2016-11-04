@@ -20,7 +20,7 @@ elasticsearch_index_total - A munin plugin that collects stats about the index t
 
 =head1 APPLICABLE SYSTEMS
 
-Elasticsearch
+elasticsearch
 
 =head1 CONFIGURATION
 
@@ -57,33 +57,33 @@ my %out;
 
 foreach my $full_node_name (keys %{$data->{nodes}}) {
     next unless $t_data->{nodes}{$full_node_name};
-    $out{index} += $t_data->{nodes}{$full_node_name}{indices}{indexing}{index_total};
-    $out{get} += $t_data->{nodes}{$full_node_name}{indices}{get}{total};
-    $out{search} += $t_data->{nodes}{$full_node_name}{indices}{search}{query_total};
-    $out{delete} += $t_data->{nodes}{$full_node_name}{indices}{indexing}{delete_total};
+    $out{index} = $t_data->{nodes}{$full_node_name}{indices}{indexing}{index_total};
+    $out{get} = $t_data->{nodes}{$full_node_name}{indices}{get}{total};
+    $out{search} = $t_data->{nodes}{$full_node_name}{indices}{search}{query_total};
+    $out{delete} = $t_data->{nodes}{$full_node_name}{indices}{indexing}{delete_total};
 }
 if ($ARGV[0] and $ARGV[0] eq 'config') {
-    print "graph_title Elasticsearch index operations\n";
+    print "graph_title elasticsearch index operations\n";
     print "graph_category elasticsearch\n";
     print "graph_args --base 1000 -l 0\n";
     print "graph_vlabel Operations per second\n";
-
+            
     print "graph_order index get search delete\n";
     print "index.label index\n";
     print "index.type DERIVE\n";
     print "index.min 0\n";
     print "index.draw LINE2\n";
-
+        
     print "get.label get\n";
     print "get.type DERIVE\n";
     print "get.min 0\n";
     print "get.draw LINE2\n";
-
+            
     print "search.label search\n";
     print "search.type DERIVE\n";
     print "search.min 0\n";
     print "search.draw LINE2\n";
-
+            
     print "delete.label delete\n";
     print "delete.type DERIVE\n";
     print "delete.min 0\n";
