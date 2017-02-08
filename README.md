@@ -5,7 +5,7 @@ This original codes has out of maintenance, so I have started maintenance this p
 
 ## Features
 
-* Supports elasticsearch 1.0.x / 1.1.x / 1.2.x / 1.3.x / 1.4.x
+* Supports elasticsearch 1.0.x / 1.1.x / 1.2.x / 1.3.x / 1.4.x / 2.x / 5.x
 * Supports monitoring local and/or another hosts
 
 ## Plugins
