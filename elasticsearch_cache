@@ -54,15 +54,15 @@ sub get_json_from_url {
 
 my $data = get_json_from_url("http://$host:$port/_nodes");
 my $t_data = get_json_from_url("http://$host:$port/_nodes/stats");
-my %out = (field_size => 0, filter_size => 0);
+my %out = (field_size => 0, query_size => 0);
 
 foreach my $full_node_name (keys %{$data->{nodes}}) {
     next unless $t_data->{nodes}{$full_node_name};
     if (defined($t_data->{nodes}{$full_node_name}{indices}{fielddata})) {
         $out{field_size} += $t_data->{nodes}{$full_node_name}{indices}{fielddata}{memory_size_in_bytes};
     }
-    if (defined($t_data->{nodes}{$full_node_name}{indices}{filter_cache})) {
-        $out{filter_size} += $t_data->{nodes}{$full_node_name}{indices}{filter_cache}{memory_size_in_bytes};
+    if (defined($t_data->{nodes}{$full_node_name}{indices}{query_cache})) {
+        $out{query_size} += $t_data->{nodes}{$full_node_name}{indices}{query_cache}{memory_size_in_bytes};
     }
 }
 if ($ARGV[0] and $ARGV[0] eq 'config') {
