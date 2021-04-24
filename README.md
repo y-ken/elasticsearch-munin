@@ -28,6 +28,7 @@ This original codes has out of maintenance, so I have started maintenance this p
 
 * env.host - a elasticsearch node capable of providing stats interface (default localhost)
 * env.port - elasticsearch HTTP API port (default 9200)
+* env.username + env.password - optional HTTP API credentials
 
 ### Example Config
 

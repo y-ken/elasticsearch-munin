@@ -38,9 +38,14 @@ Kentaro Yoshida - https://github.com/y-ken
 
 my $host = exists $ENV{'host'} ? $ENV{'host'} : 'localhost';
 my $port = exists $ENV{'port'} ? $ENV{'port'} : 9200;
+my $username = exists $ENV{'username'} ? $ENV{'username'} : '';
+my $password = exists $ENV{'password'} ? $ENV{'password'} : '';
 
 my $ua = LWP::UserAgent->new;
 $ua->timeout(10);
+if ($username and $password) {
+    $ua->credentials("$host:$port", 'security', $username, $password);
+}
 
 sub get_json_from_url {
     my $uri = shift;
